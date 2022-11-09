@@ -1,0 +1,7 @@
+.env
+.secrets/
+data/
+.envrc
+pgbackrest.conf
+dockerfiles/
+*.swp

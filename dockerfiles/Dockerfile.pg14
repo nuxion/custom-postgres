@@ -6,7 +6,7 @@ LABEL name="PostgreSQL Container Images" \
       summary="PostgreSQL Container images." \
       description="This Docker image contains PostgreSQL and PGBackRest based on Postgres ${IMAGE_VER}."
 
-COPY requirements.txt /tmp
+# ca-certificates package is needed for google apis interactions
 RUN apt-get update \
       && apt-get install pgbackrest ca-certificates --yes \
       && rm -rf /var/lib/apt/lists/*
