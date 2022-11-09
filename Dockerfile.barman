@@ -1,0 +1,14 @@
+# Based on https://github.com/postgis/docker-postgis/blob/81a0b55/14-3.2/Dockerfile
+ARG IMAGE_VER=14.5-bullseye
+FROM postgres:${IMAGE_VER}
+LABEL name="PostgreSQL Container Images" \
+      version="${IMAGE_VER}" \
+      summary="PostgreSQL Container images." \
+      description="This Docker image contains PostgreSQL and Barman Cloud based on Postgres 14.5-bullseye."
+
+COPY requirements.txt /tmp
+RUN apt-get update \
+      && apt-get install python3-pip python3-psycopg2 python3-setuptools --yes \
+      && pip3 install --upgrade pip \
+      && pip3 install --no-deps -r /tmp/requirements.txt \
+      && rm -rf /var/lib/apt/lists/*

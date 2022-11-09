@@ -1,0 +1,11 @@
+FROM python:3.8-bullseye
+
+RUN apt-get update \
+	&& apt-get install -y --no-install-recommends python3-pip \
+	&& pip install pip-tools \
+	&& mkdir /workspace \
+	&& echo "barman[cloud,azure,snappy,google] == 3.2.0" > /workspace/requirements.in
+WORKDIR /workspace
+CMD pip-compile --generate-hashes
+	
+
